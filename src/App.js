@@ -16,7 +16,7 @@ import AssignmentTurnedInOutlinedIcon from '@mui/icons-material/AssignmentTurned
 import AddToPhotosIcon from '@mui/icons-material/AddToPhotos';
 import PreviewIcon from '@mui/icons-material/Preview';
 
-const drawerWidth = 200;
+const drawerWidth = 240;
 
 export default function ClippedDrawer() {
   const paraOne = "The quick brown fox jumps over the lazy dog!"
