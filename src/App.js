@@ -15,6 +15,7 @@ import ImageIcon from '@mui/icons-material/Image';
 import AssignmentTurnedInOutlinedIcon from '@mui/icons-material/AssignmentTurnedInOutlined';
 import AddToPhotosIcon from '@mui/icons-material/AddToPhotos';
 import PreviewIcon from '@mui/icons-material/Preview';
+import Cards from './Cards'
 
 const drawerWidth = 200;
 
@@ -69,9 +70,7 @@ export default function ClippedDrawer() {
         <Typography paragraph>
           {para}
         </Typography>
-        <Typography paragraph>
-          This is a steady paragraph.
-        </Typography>
+        <Cards />
       </Box>
     </Box>
   );
