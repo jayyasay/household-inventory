@@ -15,6 +15,14 @@ import ImageIcon from '@mui/icons-material/Image';
 import AssignmentTurnedInOutlinedIcon from '@mui/icons-material/AssignmentTurnedInOutlined';
 import AddToPhotosIcon from '@mui/icons-material/AddToPhotos';
 import PreviewIcon from '@mui/icons-material/Preview';
+import AddInventory from './AddInventory';
+import { Routes, Route } from "react-router-dom"
+import {
+  Home,
+  About,
+  Events,
+  Contact
+} from "./pages"
 
 const drawerWidth = 200;
 
@@ -43,7 +51,10 @@ export default function ClippedDrawer() {
       >
         <Toolbar />
         <Box sx={{ overflow: 'auto' }}>
+          <AddInventory />
           <List>
+          <Routes>
+            <Route path="/" element={<Home />} />
             <ListItem button onClick={() => setPara(paraOne)} sx={{display: 'flex', flexDirection: 'row', columnGap: 2, paddingLeft: 1}}>
               <AddToPhotosIcon />
               <ListItemText primary="Photos"/>

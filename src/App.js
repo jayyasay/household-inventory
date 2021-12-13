@@ -16,6 +16,11 @@ import AssignmentTurnedInOutlinedIcon from '@mui/icons-material/AssignmentTurned
 import AddToPhotosIcon from '@mui/icons-material/AddToPhotos';
 import PreviewIcon from '@mui/icons-material/Preview';
 import Cards from './Cards'
+import AddInventory from './AddInventory';
+import { Link, Routes, Route } from "react-router-dom"
+import {
+  Mommy
+} from "./Mommy"
 
 const drawerWidth = 200;
 
@@ -45,14 +50,14 @@ export default function ClippedDrawer() {
         <Toolbar />
         <Box sx={{ overflow: 'auto' }}>
           <List>
-            <ListItem button onClick={() => setPara(paraOne)} sx={{display: 'flex', flexDirection: 'row', columnGap: 2, paddingLeft: 1}}>
+          <Link to="mommy"><ListItem button onClick={() => setPara(paraOne)} sx={{display: 'flex', flexDirection: 'row', columnGap: 2, paddingLeft: 1}}>
               <AddToPhotosIcon />
-              <ListItemText primary="Photos"/>
-            </ListItem>
-            <ListItem button onClick={() => setPara(paraTwo)} sx={{display: 'flex', flexDirection: 'row', columnGap: 2, paddingLeft: 1}}>
+              <ListItemText primary="CLICK ME MOMMY"/>
+            </ListItem></Link>
+            <Link to="/"><ListItem button onClick={() => setPara(paraTwo)} sx={{display: 'flex', flexDirection: 'row', columnGap: 2, paddingLeft: 1}}>
                 <PreviewIcon />
                 <ListItemText primary="Work" />
-            </ListItem>
+            </ListItem></Link>
       <ListItem button>
         <ListItemAvatar>
           <Avatar>
@@ -66,7 +71,14 @@ export default function ClippedDrawer() {
         </Box>
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+      <Routes>
+            <Route path="/mommy" element={<Mommy />} />
+      </Routes>
         <Toolbar />
+        <Typography variant="h2" noWrap>
+          Add your items here
+        </Typography>
+        <AddInventory />
         <Typography paragraph>
           {para}
         </Typography>
