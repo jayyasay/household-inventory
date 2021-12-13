@@ -15,12 +15,13 @@ import ImageIcon from '@mui/icons-material/Image';
 import AssignmentTurnedInOutlinedIcon from '@mui/icons-material/AssignmentTurnedInOutlined';
 import AddToPhotosIcon from '@mui/icons-material/AddToPhotos';
 import PreviewIcon from '@mui/icons-material/Preview';
-import Cards from './Cards'
-import AddInventory from './AddInventory';
+// import Cards from './Cards'
+// import AddInventory from './AddInventory';
 import { Link, Routes, Route } from "react-router-dom"
 import {
   Mommy
 } from "./Mommy"
+import Todo from './Todo'
 
 const drawerWidth = 200;
 
@@ -75,14 +76,10 @@ export default function ClippedDrawer() {
             <Route path="/mommy" element={<Mommy />} />
       </Routes>
         <Toolbar />
-        <Typography variant="h2" noWrap>
-          Add your items here
-        </Typography>
-        <AddInventory />
+        <Todo />
         <Typography paragraph>
-          {para}
+            {para}
         </Typography>
-        <Cards />
       </Box>
     </Box>
   );

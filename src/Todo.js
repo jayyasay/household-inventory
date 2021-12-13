@@ -11,20 +11,30 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { Typography } from '@mui/material';
 
 const Input = styled('input')({
     display: 'none',
   });
 
 function Todo () {
-    const [item, setItem] = React.useState('');
+    const [item, setItem] = useState('');
     const [quantity, setQuantity] = useState('');
 
-    const handleSubmit = e => {
+    // const handleSubmit = (e) => {
+    //     e.preventDefault();
+    //     if (!item || !quantity) return;
+    //     setItem('');
+    //     setQuantity("");
+    // }
+
+    const submitValue = (e) => {
         e.preventDefault();
-        if (!item || !quantity) return;
-        setItem("");
-        setQuantity("");
+        const inventory = {
+            'Item' : item,
+            'Quantity' : quantity
+        }
+        console.log(inventory);
     }
 
     const createData = (item, quantity, image) => {
@@ -33,11 +43,12 @@ function Todo () {
     const rows = [
         createData(`${item}`, `${quantity}`, 6.0)
         ];
-    
-    
 
     return (
     <>
+        <Typography variant="h2" component="div">
+        Add new item here!
+        </Typography>
       <Box
         component="form"
         sx={{
@@ -45,8 +56,9 @@ function Todo () {
         }}
         noValidate
         autoComplete="off"
-        onSubmit={handleSubmit}
+        onSubmit={submitValue}
       >
+       
         <TextField value={item} id="outlined-basic" label="Item name" variant="outlined" onChange={(e) => setItem(e.target.value)} />
         <TextField
           value={quantity || ''}
@@ -89,7 +101,7 @@ function Todo () {
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                
+                {row.item}
               </TableCell>
               <TableCell align="right">{row.quantity}</TableCell>
               <TableCell align="right">{row.image}</TableCell>
