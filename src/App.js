@@ -21,7 +21,8 @@ import { Link, Routes, Route } from "react-router-dom"
 import {
   Mommy
 } from "./Mommy"
-import Todo from './Todo'
+// import Todo from './Todo'
+import Inventory from './Inventory'
 
 const drawerWidth = 200;
 
@@ -76,7 +77,7 @@ export default function ClippedDrawer() {
             <Route path="/mommy" element={<Mommy />} />
       </Routes>
         <Toolbar />
-        <Todo />
+        <Inventory />
         <Typography paragraph>
             {para}
         </Typography>

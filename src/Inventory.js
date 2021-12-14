@@ -5,44 +5,30 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Typography } from '@mui/material';
+import { InputForm } from "./InventoryHook";
+import DisplayList from "./InventoryDisplay";
 
 const Input = styled('input')({
     display: 'none',
   });
 
-function Todo () {
-    const [item, setItem] = useState('');
-    const [quantity, setQuantity] = useState('');
+function Inventory() {
+    const [inputState, setInputState] = useState({});
 
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     if (!item || !quantity) return;
-    //     setItem('');
-    //     setQuantity("");
-    // }
+    const onSubmitForm = () => {
+        setInputState({
+        item: `${inputs.item}`,
+        quantity: `${inputs.quantity}`
+        });
+    };
 
-    const submitValue = (e) => {
-        e.preventDefault();
-        const inventory = {
-            'Item' : item,
-            'Quantity' : quantity
-        }
-        console.log(inventory);
-    }
-
-    const createData = (item, quantity, image) => {
-        return { item, quantity, image };
-    }
-    const rows = [
-        createData(`${item}`, `${quantity}`, 6.0)
-        ];
+    const { inputs, handleInputChange, handleSubmit } = InputForm(onSubmitForm);
 
     return (
     <>
@@ -56,19 +42,16 @@ function Todo () {
         }}
         noValidate
         autoComplete="off"
-        onSubmit={submitValue}
+        onSubmit={handleSubmit}
       >
        
-        <TextField value={item} id="outlined-basic" label="Item name" variant="outlined" onSubmit={(e) => setItem(e.target.value)} />
-        <TextField
-          value={quantity}
-          id="outlined-number"
-          label="Quantity"
-          type="number"
+        <TextField value={inputs.item} id="outlined-basic" label="Item name" name="item" variant="outlined" onChange={handleInputChange}
+        />
+        <TextField value={inputs.quantity} id="outlined-number" label="Quantity" name="quantity" type="number"
           InputLabelProps={{
             shrink: true,
           }}
-          onSubmit={(e) => setQuantity(e.target.value)}
+          onChange={handleInputChange}
         />
         <label htmlFor="contained-button-file">
         <Input accept="image/*" id="contained-button-file" multiple type="file" />
@@ -94,24 +77,11 @@ function Todo () {
             <TableCell align="right">Image</TableCell>
           </TableRow>
         </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <TableRow
-              key={row.item}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-                {row.item}
-              </TableCell>
-              <TableCell align="right">{row.quantity}</TableCell>
-              <TableCell align="right">{row.image}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
+        <DisplayList inputs={inputState} />
       </Table>
     </TableContainer>
     </>
     )
 }
 
-export default Todo;
+export default Inventory;
