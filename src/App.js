@@ -22,7 +22,8 @@ import {
   Mommy
 } from "./Mommy"
 // import Todo from './Todo'
-import Inventory from './Inventory'
+// import Inventory from './Inventory'
+import Inventoryv3 from './Inventoryv3'
 
 const drawerWidth = 200;
 
@@ -77,7 +78,7 @@ export default function ClippedDrawer() {
             <Route path="/mommy" element={<Mommy />} />
       </Routes>
         <Toolbar />
-        <Inventory />
+        <Inventoryv3 />
         <Typography paragraph>
             {para}
         </Typography>
