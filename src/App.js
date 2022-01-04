@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import './firebase/config';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import AppBar from '@mui/material/AppBar';
@@ -14,16 +15,22 @@ import Avatar from '@mui/material/Avatar';
 import ImageIcon from '@mui/icons-material/Image';
 import AssignmentTurnedInOutlinedIcon from '@mui/icons-material/AssignmentTurnedInOutlined';
 import AddToPhotosIcon from '@mui/icons-material/AddToPhotos';
+import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import PreviewIcon from '@mui/icons-material/Preview';
 // import Cards from './Cards'
 // import AddInventory from './AddInventory';
 import { Link, Routes, Route } from "react-router-dom"
 import {
   Mommy
-} from "./Mommy"
+} from "./Mommy";
+import {
+  Work
+} from "./Work";
+import Signup from './pages/Signup';
 // import Todo from './Todo'
 // import Inventory from './Inventory'
-import Inventoryv3 from './Inventoryv3'
+// import Inventoryv3 from './Inventoryv3'
+import Inventoryv4 from './Inventoryv4'
 
 const drawerWidth = 200;
 
@@ -53,11 +60,15 @@ export default function ClippedDrawer() {
         <Toolbar />
         <Box sx={{ overflow: 'auto' }}>
           <List>
+          <Link to="signup"><ListItem button sx={{display: 'flex', flexDirection: 'row', columnGap: 2, paddingLeft: 1}}>
+              <AppRegistrationIcon />
+              <ListItemText primary="Register Now!"/>
+            </ListItem></Link>
           <Link to="mommy"><ListItem button onClick={() => setPara(paraOne)} sx={{display: 'flex', flexDirection: 'row', columnGap: 2, paddingLeft: 1}}>
               <AddToPhotosIcon />
               <ListItemText primary="CLICK ME MOMMY"/>
             </ListItem></Link>
-            <Link to="/"><ListItem button onClick={() => setPara(paraTwo)} sx={{display: 'flex', flexDirection: 'row', columnGap: 2, paddingLeft: 1}}>
+            <Link to="work"><ListItem button onClick={() => setPara(paraTwo)} sx={{display: 'flex', flexDirection: 'row', columnGap: 2, paddingLeft: 1}}>
                 <PreviewIcon />
                 <ListItemText primary="Work" />
             </ListItem></Link>
@@ -76,9 +87,11 @@ export default function ClippedDrawer() {
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
       <Routes>
             <Route path="/mommy" element={<Mommy />} />
+            <Route path="/work" element={<Work />} />
+            <Route path="/signup" element={<Signup />} />
       </Routes>
         <Toolbar />
-        <Inventoryv3 />
+        <Inventoryv4 />
         <Typography paragraph>
             {para}
         </Typography>

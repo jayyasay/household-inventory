@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
@@ -21,7 +21,7 @@ class AddItem extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { items: [], item: '' };
+    this.state = { items: [], item: '', quantity: '' };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -42,7 +42,9 @@ class AddItem extends React.Component {
         onSubmit={this.handleSubmit}
       >
        
-        <TextField id="outlined-basic" label="Item name" name="item" variant="outlined" onChange={this.handleChange}
+        <TextField id="outlined-basic" label="Item name" name="item" variant="outlined" onChange={(event)=>this.handleChange(event, "item")}
+            value={this.state.text || ''} />
+        <TextField id="outlined-basic" label="Item name" name="item" variant="outlined" onChange={(event)=>this.handleChange(event,"quantity")}
             value={this.state.text || ''} />
         <label htmlFor="contained-button-file">
         <Input accept="image/*" id="contained-button-file" multiple type="file" />
@@ -63,8 +65,8 @@ class AddItem extends React.Component {
         <TableHead>
           <TableRow>
             <TableCell>Item</TableCell>
-            <TableCell align="right">Quantity</TableCell>
-            <TableCell align="right">Image</TableCell>
+            <TableCell>Quantity</TableCell>
+            <TableCell>Image</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -76,11 +78,11 @@ class AddItem extends React.Component {
       )
     }
 
-    handleChange(e) {
-      this.setState({ text: e.target.value })
+    handleChange(e, field) {
+      this.setState({ [field]: e.target.value })
     }
 
-    handleSubmit(e) {
+    handleSubmit(e, field) {
       e.preventDefault();
       if(this.state.text.length === 0) {
         return;
@@ -105,7 +107,11 @@ class AddItem extends React.Component {
             sx={{ '&:last-child td, &:last-child th': { border: 0 } }} key={item.id}
           >
              
-            <TableCell scope="row">
+            <TableCell>
+              {item.text}
+            </TableCell>
+
+            <TableCell>
               {item.text}
             </TableCell>
             
